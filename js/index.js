@@ -12,7 +12,7 @@ let animationID;
 
 let canvasX = 0
 
-/******************** Functions ********************/
+/******************** Functions ********************//
 function animationLoop() {
     animationID = window.requestAnimationFrame(animationLoop)
     cxt.clearRect(0, 0, canvas.width, canvas.height)
