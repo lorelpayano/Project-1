@@ -12,7 +12,7 @@ let animationID;
 
 let canvasX = 0
 
-/******************** Functions ********************//
+/******************** Functions ********************/
 function animationLoop() {
     animationID = window.requestAnimationFrame(animationLoop)
     cxt.clearRect(0, 0, canvas.width, canvas.height)
@@ -29,15 +29,28 @@ function playerMove(e) {
             imageX += 64
         }
     }
-    // if(e.key === 'ArrowRight') {
-    //     imageY = 64*11
-    //     xPositionSprite += 5
-    //     imageX = (imageX + 64) % 576
-    // }
     if(e.key === 'ArrowDown') {
         console.log('downnnnnnn')
         yPositionSprite += 5
         imageY = 64*10
+        if(imageX + 64 >= 64*9) {
+            imageX = 0
+        } else {
+            imageX += 64
+        }
+    }
+    if(e.key === 'ArrowLeft') {
+        imageY = 64*9
+        xPositionSprite -= 5
+        if(imageX + 64 >= 64*9) {
+            imageX = 0
+        } else {
+            imageX += 64
+        }
+    }
+    if(e.key === 'ArrowUp') {
+        imageY = 64*8
+        yPositionSprite -= 5
         if(imageX + 64 >= 64*9) {
             imageX = 0
         } else {
