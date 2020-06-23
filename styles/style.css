@@ -53,21 +53,34 @@ h1 {
   display: flex;
   justify-content: space-evenly;
   padding: 40px;
-  margin: 30px;
+  margin: auto;
   /* border-radius: 15px 15px 15px 15px; */
   box-shadow: inset 0 0 10px 0px;
+  width: 1100px;
 }
+
 
 #instructions {
-  /* float: left; */
-  border: 1px solid gold;
-  padding: 20px 20px;
+  /* border: 1px solid gold; */
+  padding: 0px 20px;
   text-align: center;
-
+  width: 200px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: auto;
 }
+
+/* #paragraph {
+  width: 105px;
+  margin: auto;
+} */
 
 #instructions.about {
   border: none;
+  width: 300px;
+  text-align: center
 }
 
 #instructions.topscore {
@@ -110,10 +123,10 @@ table th {
   font-weight: 800px;
 }
 
-#apply {
+.apply {
   padding: 5px 10px;
   background-color: none;
-  border: 1px solid ;
+  border: 1px solid;
 }
 
 #scoreList {
@@ -122,9 +135,11 @@ table th {
 }
 
 #game-board {
+  background-image: url('../images/UxifQL.png');
+  background-size: cover;
   /* float: right; */
   border: 1px solid black;
-  padding: 20px 20px;
+  /* padding: 20px 20px; */
   background-color: black;
   /* width: 100px; */
 }
