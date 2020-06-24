@@ -10,29 +10,6 @@ body {
   background-size: cover;
 }
 
-/* .game-intro {
-  float: left;
-  padding: 0% 10%;
-}
-
-.game-intro p {
-  font-size: 18px;
-  font-family: "Verdana"
-}
-
-body button {
-  font-size: 30px;
-  background-color: #870007;
-  color: #fff;
-  padding: 20px 40px;
-  border: 0;
-  box-shadow: 0;
-  border-radius: 5px;
-  margin-bottom: 20px;
-} */
-
-
-
 
 /******************** TEXT STYLING **********************/
 
@@ -64,7 +41,7 @@ h1 {
   /* border: 1px solid gold; */
   padding: 0px 20px;
   text-align: center;
-  width: 200px;
+  /* width: 200px; */
   height: 350px;
   display: flex;
   flex-direction: column;
@@ -116,7 +93,7 @@ table th {
 #influencers {
   text-align: center;
   width: 500px;
-  padding: 30px 0 15px 0;
+  padding: 30px 0 5px 0;
 }
 
 #influencers h5 {
@@ -127,6 +104,7 @@ table th {
   padding: 5px 10px;
   background-color: none;
   border: 1px solid;
+  color: rgb(77, 74, 74);
 }
 
 #scoreList {
@@ -146,14 +124,24 @@ table th {
 
 .nav-bar {
   background-color: #f5f1f1e1;
-  padding: 2px 0;
+  padding: 8px 0;
   width: 100%;
   position: fixed;
   top: 0;
+  display: flex;
+}
+
+#title {
+  display: flex;
+  float: left;
+  font-size: 20px;
+  font-weight: bold;
+  /* line-height: 5px; */
+  /* padding: 0; */
 }
 
 .nav-bar a:hover {
-  color: white;
+  color: #afacace1;
 }
 
 .nav-bar a {
@@ -165,9 +153,10 @@ table th {
 
 .nav-bar-ul {
   /* width: 1200px; */
-  margin: 0 auto;
+  margin: 0 0 auto auto;
   display: flex;
   justify-content: space-evenly;
+  float: right;
 }
 
 .nav-bar-ul li {
@@ -175,7 +164,24 @@ table th {
   text-align: center;
 }
 
-li a:hover {
+/* li a:hover {
   background-color: #cec8c8;
+} */
+
+h4 {
+  font-size: 30px;
 }
 
+.try-again {
+  padding: 5px 10px;
+  background-color:  rgb(216, 213, 213);;
+  border: 1px solid;
+  color: rgb(77, 74, 74);
+}
+
+#reset {
+  padding: 5px 10px;
+  /* background-color:  rgb(216, 213, 213);; */
+  border: 1px solid;
+  color: rgb(77, 74, 74);
+}

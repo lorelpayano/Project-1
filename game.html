@@ -13,7 +13,7 @@
       <div id="title">Elle's Beach Day</div>
       <ul class="nav-bar-ul">
         <li><a href="index.html">Home</a></li>
-        <li><a href="game.html">Game</a></li>
+        <li><a href="about.html">Game</a></li>
         <li><a href="topscore.html">Top Scores</a></li>
         <li><a href="contact.html">Contact Us</a></li>
       </ul>
@@ -24,13 +24,20 @@
 
     <section id="section1">
 
-      <div id="instructions" class="about">
-        <p>Elle is just trying to have a nice relaxing day at the beach as she watches the sunset. Unfortunately for her, deadly crystals started falling from the sky! Help Elle avoid the crystals so she can get back to enjoying her evening.</p>
+      <div id="instructions">
 
-        <a class="apply" href="game.html">START</a>
+        <h3>INSTRUCTIONS</h3>
 
+        <p id="paragraph">Use the LEFT and RIGHT arrows on your keyboard to help Elle avoid the deadly falling crystals.</p>
+
+        <button id='reset'>Reset</button>
 
       </div>
+
+      <div id="game-board">
+        <canvas id="canvas" width="700" height="468"></canvas>
+      </div>
+      
 
 
       <script type="text/javascript" src="js/index.js"></script>

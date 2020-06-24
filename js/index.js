@@ -21,6 +21,9 @@ let canvasX = 0
 let died = false;
 let obstacles = []
 
+const resetBtn = document.querySelector('#reset')
+resetBtn.onclick = () => {location.reload()}
+
 
 
 
@@ -35,7 +38,8 @@ setInterval(function () {
         x: Math.random() * (canvas.width - 30),
         y: -30,
         height: 30,
-        width: 30
+        width: 30,
+        speed: 1
     })
 }, 2000)
 
@@ -43,20 +47,21 @@ setInterval(function () {
 function animationLoop() {
     animationID = window.requestAnimationFrame(animationLoop)
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    // ctx.drawImage(sprite imageX, imageY, 64, 64, xPositionSprite, yPositionSprite, 64, 64)
     if (!died)
         ctx.drawImage(sprite, imageX, imageY, 64, 64, xPositionSprite, yPositionSprite, 64, 64)
     else {
         ctx.drawImage(glitter, glitterX, 0, 56.6, 59, xPositionSprite, yPositionSprite, 64, 64)
         glitterX = (glitterX + 56.625) % 906
-        // return window.alert("GAME OVER");
     }
 
 
     obstacles.forEach((obs, i) => {
+        if(animationID > 200){
+        obs.speed = 3
+        }
         ctx.fillStyle = obs.color
         // ctx.fillRect(obs.x, obs.y += 1, 30, 30);
-        ctx.drawImage(obs.img, obs.x, obs.y += 1, 30, 30);
+        ctx.drawImage(obs.img, obs.x, obs.y += obs.speed, 30, 30);
         if ((xPositionSprite + 64 < obs.x ||
                 xPositionSprite > obs.x + 30 ||
                 yPositionSprite > obs.y + 30 ||
@@ -64,10 +69,11 @@ function animationLoop() {
             console.log('colision detected')
             if (died === false)
                 setTimeout(() => {
-                    window.cancelAnimationFrame(animationID);
-                    alert('game over')
-                    location.reload();
-                }, 3000)
+                    window.location.replace("gameover.html")
+                    // window.cancelAnimationFrame(animationID);
+                    // alert('game over')
+                    // location.reload();
+                }, 2000)
             died = true;
         }
         if (obs.y >= canvas.height) {
