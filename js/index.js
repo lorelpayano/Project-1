@@ -20,6 +20,9 @@ let obstacleY = 0
 let canvasX = 0
 let died = false;
 let obstacles = []
+let score = 0;
+let speedChange = 1
+let obsChange = 500
 
 const resetBtn = document.querySelector('#reset')
 resetBtn.onclick = () => {location.reload()}
@@ -39,9 +42,21 @@ setInterval(function () {
         y: -30,
         height: 30,
         width: 30,
-        speed: 1
+        speed: speedChange
     })
-}, 2000)
+}, obsChange)
+
+setInterval ( () => {
+    speedChange+= .2
+    // obsChange-=500
+    // score++;
+}, 1000)
+
+setInterval ( () => {
+    // obsChange-=500
+    score++;
+}, 100)
+
 
 /******************** Functions ********************/
 function animationLoop() {
@@ -49,23 +64,26 @@ function animationLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     if (!died)
         ctx.drawImage(sprite, imageX, imageY, 64, 64, xPositionSprite, yPositionSprite, 64, 64)
+        
     else {
         ctx.drawImage(glitter, glitterX, 0, 56.6, 59, xPositionSprite, yPositionSprite, 64, 64)
         glitterX = (glitterX + 56.625) % 906
     }
-
+   
+    boundaries()
 
     obstacles.forEach((obs, i) => {
-        if(animationID > 200){
-        obs.speed = 3
-        }
+        // if(animationID > 200){
+        // obs.speed = 3
+        // }
+
         ctx.fillStyle = obs.color
         // ctx.fillRect(obs.x, obs.y += 1, 30, 30);
         ctx.drawImage(obs.img, obs.x, obs.y += obs.speed, 30, 30);
-        if ((xPositionSprite + 64 < obs.x ||
+        if ((xPositionSprite + 15 < obs.x ||
                 xPositionSprite > obs.x + 30 ||
                 yPositionSprite > obs.y + 30 ||
-                yPositionSprite + 64 < obs.y) === false) {
+                yPositionSprite + 15 < obs.y) === false) {
             console.log('colision detected')
             if (died === false)
                 setTimeout(() => {
@@ -76,34 +94,41 @@ function animationLoop() {
                 }, 2000)
             died = true;
         }
+        if(score > 300){
+            window.location.replace("win.html")
+        }
+        
         if (obs.y >= canvas.height) {
             obstacles.splice(i, 1);
         }
+        
     })
+    drawScore()
     // (imageObj, imageX, imageY, imageWidth, imageHeight, xCanvas, yCanvas, widthCanvas, heightCanvas)
 
 }
 
-
-
-
-
-
-
+function drawScore() {
+    ctx.fillStyle = 'rgba(255,255,255, 0.9)';
+    ctx.fillRect(580, 10, 120, 40)
+    ctx.font = '20px Playfair Display';
+    ctx.fillStyle = 'black';
+    ctx.fillText(`Score: ${score}`, 585, 35);
+}
 
 function playerMove(e) {
     if (e.key === 'ArrowRight') {
         imageY = 64 * 11
-        xPositionSprite += 5
+        xPositionSprite += 14
         if (imageX + 64 >= 64 * 9) {
             imageX = 0
         } else {
             imageX += 64
         }
+    
     }
     if (e.key === 'ArrowDown') {
-        console.log('downnnnnnn')
-        yPositionSprite += 5
+        yPositionSprite += 14
         imageY = 64 * 10
         if (imageX + 64 >= 64 * 9) {
             imageX = 0
@@ -113,7 +138,7 @@ function playerMove(e) {
     }
     if (e.key === 'ArrowLeft') {
         imageY = 64 * 9
-        xPositionSprite -= 5
+        xPositionSprite -= 14
         if (imageX + 64 >= 64 * 9) {
             imageX = 0
         } else {
@@ -122,12 +147,29 @@ function playerMove(e) {
     }
     if (e.key === 'ArrowUp') {
         imageY = 64 * 8
-        yPositionSprite -= 5
+        yPositionSprite -= 14
         if (imageX + 64 >= 64 * 9) {
             imageX = 0
         } else {
             imageX += 64
         }
+    }
+
+}
+
+
+function boundaries() {
+    if(yPositionSprite > canvas.height-70){
+    yPositionSprite = 400
+    }
+    if(yPositionSprite < canvas.height-120){
+    yPositionSprite = canvas.height -120
+    }
+    if(xPositionSprite > canvas.width-60){
+    xPositionSprite = canvas.width- 50
+    }
+    if(xPositionSprite < canvas.width-700){
+    xPositionSprite = 0
     }
 }
 
