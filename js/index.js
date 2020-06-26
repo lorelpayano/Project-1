@@ -25,7 +25,9 @@ let speedChange = 1
 let obsChange = 500
 
 const resetBtn = document.querySelector('#reset')
-resetBtn.onclick = () => {location.reload()}
+resetBtn.onclick = () => {
+    location.reload()
+}
 
 
 
@@ -34,7 +36,8 @@ resetBtn.onclick = () => {location.reload()}
 setInterval(function () {
     let img = new Image();
     let random = Math.ceil(Math.random() * 11)
-    img.src = `../images/${random}.png`
+    // img.src = `../images/${random}.png`
+    img.src = `./images/${random}.png`
     obstacles.push({
         img: img,
         color: 'red',
@@ -46,13 +49,13 @@ setInterval(function () {
     })
 }, obsChange)
 
-setInterval ( () => {
-    speedChange+= .2
+setInterval(() => {
+    speedChange += .2
     // obsChange-=500
     // score++;
 }, 1000)
 
-setInterval ( () => {
+setInterval(() => {
     // obsChange-=500
     score++;
 }, 100)
@@ -64,12 +67,12 @@ function animationLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     if (!died)
         ctx.drawImage(sprite, imageX, imageY, 64, 64, xPositionSprite, yPositionSprite, 64, 64)
-        
+
     else {
         ctx.drawImage(glitter, glitterX, 0, 56.6, 59, xPositionSprite, yPositionSprite, 64, 64)
         glitterX = (glitterX + 56.625) % 906
     }
-   
+
     boundaries()
 
     obstacles.forEach((obs, i) => {
@@ -94,14 +97,14 @@ function animationLoop() {
                 }, 2000)
             died = true;
         }
-        if(score > 300){
+        if (score > 300) {
             window.location.replace("win.html")
         }
-        
+
         if (obs.y >= canvas.height) {
             obstacles.splice(i, 1);
         }
-        
+
     })
     drawScore()
     // (imageObj, imageX, imageY, imageWidth, imageHeight, xCanvas, yCanvas, widthCanvas, heightCanvas)
@@ -125,7 +128,7 @@ function playerMove(e) {
         } else {
             imageX += 64
         }
-    
+
     }
     if (e.key === 'ArrowDown') {
         yPositionSprite += 14
@@ -159,17 +162,17 @@ function playerMove(e) {
 
 
 function boundaries() {
-    if(yPositionSprite > canvas.height-70){
-    yPositionSprite = 400
+    if (yPositionSprite > canvas.height - 70) {
+        yPositionSprite = 400
     }
-    if(yPositionSprite < canvas.height-120){
-    yPositionSprite = canvas.height -120
+    if (yPositionSprite < canvas.height - 120) {
+        yPositionSprite = canvas.height - 120
     }
-    if(xPositionSprite > canvas.width-60){
-    xPositionSprite = canvas.width- 50
+    if (xPositionSprite > canvas.width - 60) {
+        xPositionSprite = canvas.width - 50
     }
-    if(xPositionSprite < canvas.width-700){
-    xPositionSprite = 0
+    if (xPositionSprite < canvas.width - 700) {
+        xPositionSprite = 0
     }
 }
 
