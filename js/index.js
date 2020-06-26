@@ -3,9 +3,9 @@
 const canvas = document.querySelector('#canvas')
 const ctx = canvas.getContext('2d')
 let sprite = new Image()
-sprite.src = '../images/sprite.png'
+sprite.src = 'images/sprite.png'
 let glitter = new Image();
-glitter.src = '../images/glitter-explosion-removebg-preview.png'
+glitter.src = 'images/glitter-explosion-removebg-preview.png'
 // let sprite = new GIF();
 // sprite.load('../images/download.gif')
 // sprite.src = '../images/glitter-explosion.png'
